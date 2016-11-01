@@ -15,6 +15,7 @@
 		C5847F051DC9242C00614F2A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5847F041DC9242C00614F2A /* Alamofire.framework */; };
 		C5847F081DC9264900614F2A /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C5847F041DC9242C00614F2A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C5847F0A1DC92F4100614F2A /* pokemon.csv in Resources */ = {isa = PBXBuildFile; fileRef = C5847F091DC92F4100614F2A /* pokemon.csv */; };
+		C5847F0D1DC9303D00614F2A /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5847F0C1DC9303D00614F2A /* Pokemon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,7 @@
 		C5847EFD1DC922BE00614F2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5847F041DC9242C00614F2A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		C5847F091DC92F4100614F2A /* pokemon.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokemon.csv; sourceTree = "<group>"; };
+		C5847F0C1DC9303D00614F2A /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		C5847EF01DC922BE00614F2A /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				C5847F0B1DC9302B00614F2A /* Model */,
 				C5847EF11DC922BE00614F2A /* AppDelegate.swift */,
 				C5847EF31DC922BE00614F2A /* ViewController.swift */,
 				C5847EF51DC922BE00614F2A /* Main.storyboard */,
@@ -91,6 +94,14 @@
 				C5847F041DC9242C00614F2A /* Alamofire.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C5847F0B1DC9302B00614F2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C5847F0C1DC9303D00614F2A /* Pokemon.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +181,7 @@
 			files = (
 				C5847EF41DC922BE00614F2A /* ViewController.swift in Sources */,
 				C5847EF21DC922BE00614F2A /* AppDelegate.swift in Sources */,
+				C5847F0D1DC9303D00614F2A /* Pokemon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
