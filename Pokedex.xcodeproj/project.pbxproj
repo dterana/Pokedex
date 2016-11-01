@@ -12,7 +12,22 @@
 		C5847EF71DC922BE00614F2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5847EF51DC922BE00614F2A /* Main.storyboard */; };
 		C5847EF91DC922BE00614F2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5847EF81DC922BE00614F2A /* Assets.xcassets */; };
 		C5847EFC1DC922BE00614F2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5847EFA1DC922BE00614F2A /* LaunchScreen.storyboard */; };
+		C5847F051DC9242C00614F2A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5847F041DC9242C00614F2A /* Alamofire.framework */; };
+		C5847F081DC9264900614F2A /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C5847F041DC9242C00614F2A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C5847F071DC9261D00614F2A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C5847F081DC9264900614F2A /* Alamofire.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C5847EEE1DC922BE00614F2A /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +37,7 @@
 		C5847EF81DC922BE00614F2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5847EFB1DC922BE00614F2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5847EFD1DC922BE00614F2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5847F041DC9242C00614F2A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5847F051DC9242C00614F2A /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +57,7 @@
 			children = (
 				C5847EF01DC922BE00614F2A /* Pokedex */,
 				C5847EEF1DC922BE00614F2A /* Products */,
+				C5847F031DC9242B00614F2A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +82,14 @@
 			path = Pokedex;
 			sourceTree = "<group>";
 		};
+		C5847F031DC9242B00614F2A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5847F041DC9242C00614F2A /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +100,7 @@
 				C5847EEA1DC922BE00614F2A /* Sources */,
 				C5847EEB1DC922BE00614F2A /* Frameworks */,
 				C5847EEC1DC922BE00614F2A /* Resources */,
+				C5847F071DC9261D00614F2A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -260,6 +287,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WBEHWU37QN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Pokedex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zonepourpre.Pokedex;
@@ -273,6 +304,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WBEHWU37QN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Pokedex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zonepourpre.Pokedex;
