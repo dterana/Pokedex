@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PokemonVC.swift
 //  Pokedex
 //
 //  Created by Pourpre on 11/1/16.
@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class PokemonVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
     @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -106,7 +106,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        var pokemon: Pokemon!
+        
+        if inSearchMode {
+            
+            pokemon = filteredPokemons[indexPath.row]
+        
+        } else {
+            
+            pokemon = pokemons[indexPath.row]
+        
+        }
+        
+        performSegue(withIdentifier: "PokemonDetailVC", sender: pokemon)
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -166,6 +180,25 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             collection.reloadData()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PokemonDetailVC" {
+        
+            if let detailVC = segue.destination as? PokemonDetailVC {
+                
+                if let pokemon = sender as? Pokemon {
+                    
+                    detailVC.pokemon = pokemon
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+
+    
     
     // Hide keyboard if you clic outside the search field
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
