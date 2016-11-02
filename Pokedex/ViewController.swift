@@ -28,6 +28,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collection.delegate = self
         searchBar.delegate = self
         
+        searchBar.returnKeyType = UIReturnKeyType.done
+        
         parsePokemonCSV()
         initAudio()
     }
@@ -142,12 +144,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil || searchBar.text == "" {
             
             inSearchMode = false
             collection.reloadData()
+            view.endEditing(true)
         
         } else {
         
@@ -158,9 +165,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             filteredPokemons = pokemons.filter({$0.name.range(of: search) != nil})
             collection.reloadData()
         }
-        
-        
-        
+    }
+    
+    // Hide keyboard if you clic outside the search field
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     
