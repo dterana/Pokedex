@@ -25,18 +25,22 @@ class PokemonDetailVC: UIViewController {
     @IBOutlet weak var pokedexIDLbl: UILabel!
     @IBOutlet weak var weightLbl: UILabel!
     @IBOutlet weak var attackLbl: UILabel!
-    @IBOutlet weak var evoLbl: NSLayoutConstraint!
+    @IBOutlet weak var evoLbl: UILabel!
     @IBOutlet weak var nextEvoImg: UIImageView!
     @IBOutlet weak var currentEvoImg: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        nameLbl.text = pokemon.name
+        nameLbl.text = pokemon.name.capitalized
+        
+        let img = UIImage(named: "\(pokemon.pokedexId)")
+        mainImg.image = img
+        currentEvoImg.image = img
+        pokedexIDLbl.text = "\(pokemon.pokedexId)"
         
         pokemon.downloadPokemonDetail {
             
-            print("Did arrive here?")
             // Called after the network call is complete!
             self.updateUI()
         }
@@ -48,6 +52,32 @@ class PokemonDetailVC: UIViewController {
         defenseLbl.text = pokemon.defense
         weightLbl.text = pokemon.weight
         heightLbl.text = pokemon.height
+        typeLbl.text = pokemon.type
+        descriptionLbl.text = pokemon.description
+        
+        //add pokemon.pokedexId == 38 condition to resolve an error in the pokeapi
+        if pokemon.nextEvolutionId == ""
+            || pokemon.pokedexId == 34  //add pokemon.pokedexId == 34 condition to resolve an error in the pokeapi
+            || pokemon.pokedexId == 38  //add pokemon.pokedexId == 38 condition to resolve an error in the pokeapi
+        {
+        
+            evoLbl.text = "No evolution"
+            currentEvoImg.isHidden = false
+            nextEvoImg.isHidden = true
+            
+        } else {
+            
+            var  str = "Next Evolution: \(pokemon.nextEvolutionName)"
+            if pokemon.nextEvolutionLevel != "" {
+                
+                str += " - LVL \(pokemon.nextEvolutionLevel)"
+            }
+            
+            evoLbl.text = str
+            nextEvoImg.image = UIImage(named: "\(pokemon.nextEvolutionId)")
+            currentEvoImg.isHidden = false
+            nextEvoImg.isHidden = false
+        }
     
     }
 
