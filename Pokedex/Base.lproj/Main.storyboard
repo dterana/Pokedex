@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokedex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0X-ra-7Yj">
-                                        <rect key="frame" x="120.5" y="27" width="134" height="30"/>
+                                        <rect key="frame" x="120.5" y="29" width="134" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="E6E-P1-0b8"/>
                                             <constraint firstAttribute="width" constant="134" id="TBA-Ln-pPI"/>
@@ -39,12 +39,25 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZV8-q0-Bcl">
+                                        <rect key="frame" x="341" y="27" width="26" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="pYc-MA-Qbh"/>
+                                            <constraint firstAttribute="width" constant="26" id="upd-Nl-su8"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="music.png"/>
+                                        <connections>
+                                            <action selector="musicBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mJD-N4-wXx"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94174107142857144" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="0Lu-aT-mdw"/>
                                     <constraint firstItem="c0X-ra-7Yj" firstAttribute="centerX" secondItem="Y4C-yF-GFK" secondAttribute="centerX" id="Atj-LO-PlS"/>
-                                    <constraint firstAttribute="bottom" secondItem="c0X-ra-7Yj" secondAttribute="bottom" constant="8" id="grw-fy-3OC"/>
+                                    <constraint firstAttribute="bottom" secondItem="c0X-ra-7Yj" secondAttribute="bottom" constant="6" id="grw-fy-3OC"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZV8-q0-Bcl" secondAttribute="bottom" constant="12" id="h8Y-dM-i4X"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZV8-q0-Bcl" secondAttribute="trailing" constant="8" id="rhw-re-K02"/>
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="ZgL-OB-F6R">
@@ -137,5 +150,6 @@
     <resources>
         <image name="4" width="120" height="120"/>
         <image name="bg" width="1920" height="1200"/>
+        <image name="music.png" width="100" height="100"/>
     </resources>
 </document>
