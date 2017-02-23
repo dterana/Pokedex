@@ -28,7 +28,12 @@ class PokeCell: UICollectionViewCell {
         
         nameLbl.text = self.pokemon.name.capitalized
         thumbImg.image = UIImage(named: "\(pokemon.pokedexId)")
-        
+        if pokemon.pokedexId < 10
+        {
+            thumbImg.image = UIImage(named: "00\(pokemon.pokedexId)")
+        } else if pokemon.pokedexId < 100 {
+            thumbImg.image = UIImage(named: "0\(pokemon.pokedexId)")
+        }
     }
     
 }

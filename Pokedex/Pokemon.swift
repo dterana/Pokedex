@@ -147,124 +147,80 @@ class Pokemon {
     
         self._name = name
         self._pokedexId = pokedexId
-        
-        self._pokemonURL = "\(URL_BASE)\(URL_POKEMON)\(self.pokedexId)/"
+        if pokedexId < 10 {
+            self._pokemonURL = "\(URL_BASE)\(URL_POKEMON)00\(self.pokedexId)/"
+        } else if pokedexId < 100 {
+            self._pokemonURL = "\(URL_BASE)\(URL_POKEMON)0\(self.pokedexId)/"
+        } else {
+            self._pokemonURL = "\(URL_BASE)\(URL_POKEMON)\(self.pokedexId)/"
+        }
     }
     
     
     func downloadPokemonDetail(completed: @escaping DownloadComplete) {
-        
+
         Alamofire.request(_pokemonURL).responseJSON { (response) in
             
             if let dict = response.result.value as? Dictionary<String, AnyObject> {
                 
-                if let weight = dict["weight"] as? String {
-                    
-                    self._weight = weight
-                
+                if let weight = dict["weight"] as? Int {
+                    self._weight = "\(weight)"
                 }
                 
-                if let height = dict["height"] as? String {
-                    
-                    self._height = height
-                    
+                if let height = dict["height"] as? Int {
+                    self._height = "\(height)"
                 }
                 
-                if let attack = dict["attack"] as? Int {
-                    
+                if let attack = dict["baseattack"] as? Int {
                     self._attack = "\(attack)"
-                    
                 }
                 
-                if let defense = dict["defense"] as? Int {
-                    
+                if let defense = dict["basedefense"] as? Int {
                     self._defense = "\(defense)"
-                    
                 }
                 
-                if let types = dict["types"] as? [Dictionary<String, String>], types.count > 0 {
-                    if let name = types[0]["name"] {
-                        self._type = name.capitalized
-                    }
-                    
-                    if types.count > 1 {
-                    
-                        for x in 1..<types.count {
-                            if let name = types[x]["name"] {
-                                self._type! += "/\(name.capitalized)"
-                            }
-                        }
-                    }
-
-                } else {
-                    
-                    self._type = "None"
-                    
+                if let type = dict["type"] as? String {
+                    self._type = "\(type)"
                 }
                 
-                if let descArr = dict["descriptions"] as? [Dictionary<String, String>], descArr.count > 0 {
+                if let description = dict["description"] as? String {
+                    self._description = description
+                }
+                
+                if let evoLvl = dict["evolvl"] as? Int {
                     
-                    if let url = descArr[0]["resource_uri"] {
-                       
-                        let descURL = "\(URL_BASE)\(url)"
+                    self._nextEvolutionLevel = "\(evoLvl)"
                     
-                        Alamofire.request(descURL).responseJSON(completionHandler: { (response) in
-                            
-                            if let descDict = response.result.value as? Dictionary<String, AnyObject> {
-                                
-                                if let description = descDict["description"] as? String {
-                                    
-                                    let newDescription = description.replacingOccurrences(of: "POKMON", with: "Pokemon")
-                                    
-                                    self._description = newDescription
-                                
-                                }
-                                
-                                
-                            }
-                            
-                            completed()
-                            
-                        })
+                    if evoLvl > 0 {
                         
-                    }
-                    
-                } else {
-                    
-                    self._description = ""
-                }
-                
-                if let evolutions = dict["evolutions"] as? [Dictionary<String, AnyObject>], evolutions.count > 0 {
-                    
-                    if let nextEvolution = evolutions[0]["to"] as? String {
-                        
-                        if nextEvolution.range(of: "mega") == nil {
+                        if let evoIndex = dict["evoindex"] as? String {
                             
-                            self._nextEvolutionName = nextEvolution
-                            if let uri = evolutions[0]["resource_uri"] as? String {
-                                let newStr = uri.replacingOccurrences(of: "/api/v1/pokemon/", with: "")
-                                let nextEvolutionId = newStr.replacingOccurrences(of: "/", with: "")
-                                
-                                self._nextEvolutionId = nextEvolutionId
-                                
-                                if let lvlExist = evolutions[0]["level"] {
+                            self._nextEvolutionId = evoIndex
+                            
+                            let evoURL = "\(URL_BASE)\(URL_POKEMON)\(evoIndex)"
+                            
+                            Alamofire.request(evoURL).responseJSON(completionHandler: { (response) in
+                                if let evoDict = response.result.value as? Dictionary<String, AnyObject> {
                                     
-                                    if let lvl = lvlExist as? Int {
+                                    if let evoName = evoDict["name"] as? String {
                                         
-                                        self._nextEvolutionLevel = "\(lvl)"
+                                        self._nextEvolutionName = evoName
                                     }
-                                    
-                                    
-                                } else {
-                                    
-                                    self._nextEvolutionLevel = ""
+                    
                                 }
                                 
-                            }
-                        }
+                                completed()
+                            
+                            })
                         
+                        }
+                    
+                    } else {
+                        
+                        self._nextEvolutionName = ""
+                    
                     }
-
+                
                 }
                 
             }

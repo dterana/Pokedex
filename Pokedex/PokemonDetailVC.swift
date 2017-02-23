@@ -33,10 +33,14 @@ class PokemonDetailVC: UIViewController {
         super.viewDidLoad()
     
         nameLbl.text = pokemon.name.capitalized
-        
-        let img = UIImage(named: "\(pokemon.pokedexId)")
+        var  img = UIImage(named: "\(pokemon.pokedexId)")
+        if pokemon.pokedexId < 10 {
+            img = UIImage(named: "00\(pokemon.pokedexId)")
+        } else if pokemon.pokedexId < 100 {
+            img = UIImage(named: "0\(pokemon.pokedexId)")
+        }
         mainImg.image = img
-        currentEvoImg.image = img
+        
         pokedexIDLbl.text = "\(pokemon.pokedexId)"
         
         pokemon.downloadPokemonDetail {
@@ -62,7 +66,6 @@ class PokemonDetailVC: UIViewController {
         {
         
             evoLbl.text = "No evolution"
-            currentEvoImg.isHidden = false
             nextEvoImg.isHidden = true
             
         } else {
@@ -74,8 +77,13 @@ class PokemonDetailVC: UIViewController {
             }
             
             evoLbl.text = str
-            nextEvoImg.image = UIImage(named: "\(pokemon.nextEvolutionId)")
-            currentEvoImg.isHidden = false
+            let evoId = Int(pokemon.nextEvolutionId)!
+            nextEvoImg.image = UIImage(named: "\(evoId)")
+            if evoId < 10 {
+                nextEvoImg.image = UIImage(named: "00\(evoId)")
+            } else if evoId < 100 {
+                nextEvoImg.image = UIImage(named: "0\(evoId)")
+            }
             nextEvoImg.isHidden = false
         }
     
